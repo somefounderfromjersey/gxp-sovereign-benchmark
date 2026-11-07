@@ -1,0 +1,49 @@
+---
+
+### 2. `schema/gxp_hardware_isolation_schema.yaml`
+*(This is the machine-readable configuration file that defines what a compliant, air-gapped hardware node must look like. It proves you aren't just using buzzwords.)*
+
+```yaml
+# GxP Sovereign Hardware Isolation Schema
+# Defines the strict boundary conditions for a compliant AI enclave
+
+enclave_specifications:
+  version: "1.0"
+  compliance_targets: ["21_CFR_11", "GAMP_5", "ALCOA+"]
+
+hardware_isolation:
+  trusted_execution_environment:
+    required: true
+    allowed_protocols: 
+      - "AMD_SEV-SNP"
+      - "Intel_TDX"
+  tpm_attestation:
+    required: true
+    version: "2.0"
+    pcr_banks: ["sha256"]
+
+network_boundaries:
+  allow_wan_egress: false
+  allowed_ingress_ports:
+    - port: 443
+      protocol: "tcp"
+      description: "Local HTTPS API binding only (TLS 1.3)"
+  drop_all_external: true
+
+data_integrity:
+  model_weights:
+    enforce_static_hash: true
+    hash_algorithm: "sha256"
+    # Fails IQ/OQ validation if the model changes without formal change control
+    drift_tolerance: 0.0 
+  
+  audit_logging:
+    compliant_mode: true
+    log_path: "/var/log/battlement/audit/"
+    append_only: true
+    cryptographic_signing: true
+    retention_policy: "indefinite"
+
+user_attribution:
+  enforce_strict_identity: true
+  session_timeout_minutes: 15
