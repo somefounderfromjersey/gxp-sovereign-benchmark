@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Custom Battlement GxP Audit Exclusions
+*.log
+/var/log/battlement/
+/audit_reports/local_outputs/
+.env
+.env.local
+*.pem
+*.key
