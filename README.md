@@ -23,3 +23,20 @@ This repository contains the open-source **Hardware Isolation Audit Specificatio
 Run the compliance test harness on your local edge node to verify hardware isolation:
 ```bash
 python3 tests/run_compliance_audit.py --config schema/gxp_hardware_isolation_schema.yaml
+
+
+
+
+
+
+
+
+
+## License & Copyright
+
+Copyright (c) 2026 Battlement Systems LLC.
+
+* **Code, Schemas & Test Suites:** Licensed under the [Apache License, Version 2.0](LICENSE) (the "License"). You may obtain a copy of the License at `http://www.apache.org/licenses/LICENSE-2.0`.
+* **Benchmark Documentation & Specifications:** Licensed under the [Creative Commons Attribution 4.0 International License (CC-BY-4.0)](https://creativecommons.org/licenses/by/4.0/).
+
+---
